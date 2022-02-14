@@ -1,0 +1,60 @@
+[tool.poetry]
+name = "{{cookiecutter.project_name}}"
+version = "0.1.0"
+description = ""
+authors = ["{{cookiecutter.author_name}}"]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.1"
+pre-commit = "^2.15.0"
+isort = "^5.10.1"
+black = "^22.1.0"
+mypy = "^0.931"
+flake8 = "^4.0.1"
+
+[tool.black]
+# https://github.com/psf/black
+target-version = ["py39"]
+line-length = 88
+
+exclude = '''
+/(
+    \.git
+    | \.hg
+    | \.mypy_cache
+    | \.tox
+    | \.venv
+    | _build
+    | buck-out
+    | build
+    | dist
+    | env
+    | venv
+)/
+'''
+
+[tool.isort]
+# https://github.com/timothycrosley/isort/
+py_version = 39
+line_length = 88
+sections = ["FUTURE", "STDLIB", "THIRDPARTY", "FIRSTPARTY", "LOCALFOLDER"]
+include_trailing_comma = true
+profile = "black"
+multi_line_output = 3
+indent = 4
+# Probably not worth adding color as a dependency
+# color_output = true
+
+[tool.mypy]
+disallow_any_generics = true
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
